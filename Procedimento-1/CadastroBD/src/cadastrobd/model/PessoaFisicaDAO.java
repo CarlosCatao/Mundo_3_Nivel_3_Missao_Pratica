@@ -24,7 +24,8 @@ public class PessoaFisicaDAO {
         try {
             conn = ConectorBD.getConnection();
             String sql = "SELECT p.cod_pessoa, p.nome, p.logradouro, p.telefone, p.email, p.tipo_pessoa, p.cidade, p.estado, pf.cpf " +
-                         "FROM Pessoa p JOIN Pessoa_Fisica pf ON p.cod_pessoa = pf.cod_pessoa WHERE p.tipo_pessoa = 'F'";
+             "FROM Pessoa p JOIN Pessoa_Fisica pf ON p.cod_pessoa = pf.cod_pessoa " +
+             "WHERE p.tipo_pessoa = 'F' AND p.cod_pessoa = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, cod_pessoa);
             rs = stmt.executeQuery();
